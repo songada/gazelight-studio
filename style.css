@@ -69,7 +69,18 @@ h3{font-size:1.35rem}
 .hero-img-a{grid-row:span 2;aspect-ratio:2/3}
 .hero-img-b{aspect-ratio:4/3}
 .hero-img-c{aspect-ratio:5/4}
-.hero-caption{grid-column:1/-1;margin:2px 0 0;font-size:.85rem;color:var(--muted)}
+/* Lightbox */
+.lightbox{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:rgba(24,19,14,.93);padding:24px}
+.lightbox[hidden]{display:none}
+.lb-figure{margin:0;max-width:min(1060px,94vw);text-align:center}
+.lb-figure img{max-width:100%;max-height:78vh;width:auto;height:auto;object-fit:contain;border-radius:8px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.lb-cap{margin-top:14px;color:#f3ead7;font-size:.95rem;display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:center;align-items:baseline}
+.lb-cap a{color:#e8c87a}
+.lb-btn{position:absolute;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:50%;width:46px;height:46px;font-size:1.4rem;line-height:1;cursor:pointer}
+.lb-btn:hover{background:rgba(255,255,255,.22)}
+.lb-close{top:18px;right:18px}
+.lb-prev{left:18px;top:50%;transform:translateY(-50%)}
+.lb-next{right:18px;top:50%;transform:translateY(-50%)}
 .strip{background:var(--dark);color:#f3ede3}
 .strip-inner{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;padding:16px 22px;font-family:var(--serif);font-size:1.05rem;letter-spacing:.04em}
 .strip-inner i{color:var(--gold);font-style:normal}
@@ -80,7 +91,7 @@ h3{font-size:1.35rem}
 .filter-btn:hover{border-color:var(--ink)}
 .filter-btn.is-active{background:var(--ink);color:#fff;border-color:var(--ink)}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.g-item{position:relative;display:block;border-radius:var(--radius);overflow:hidden;background:#e9e2d5;text-decoration:none;color:#fff}
+.g-item{position:relative;display:block;border-radius:var(--radius);overflow:hidden;background:#e9e2d5;text-decoration:none;color:#fff;cursor:zoom-in}
 .g-item img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .4s ease}
 .g-item:hover img{transform:scale(1.04)}
 .g-cap{position:absolute;left:0;right:0;bottom:0;padding:34px 16px 14px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.78));display:flex;flex-direction:column;gap:2px}

@@ -5,6 +5,7 @@
    2. Mobile nav toggle
    3. Package buttons pre-fill the booking form
    4. Booking form composes a mailto: to song@gazelight.studio
+   5. Portfolio lightbox — full-frame photo viewer, no cropping
    ============================================================ */
 (function () {
   'use strict';
@@ -86,6 +87,68 @@
         + '?subject=' + encodeURIComponent(subject)
         + '&body=' + encodeURIComponent(lines.join('\n'));
       window.location.href = url;
+    });
+  }
+
+  /* ---------- 5. Portfolio lightbox ---------- */
+  var lightbox = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var lbCap = document.getElementById('lbCap');
+  var lbGallery = document.getElementById('lbGallery');
+  var lbClose = document.getElementById('lbClose');
+  var lbPrev = document.getElementById('lbPrev');
+  var lbNext = document.getElementById('lbNext');
+  var lbList = [];
+  var lbIndex = 0;
+
+  function visibleItems() {
+    return Array.prototype.filter.call(items, function (item) {
+      return !item.classList.contains('is-hidden');
+    });
+  }
+  function showLb(i) {
+    lbIndex = (i + lbList.length) % lbList.length;
+    var link = lbList[lbIndex];
+    var img = link.querySelector('img');
+    var cap = link.querySelector('.g-cap');
+    lbImg.src = img ? img.getAttribute('src') : '';
+    lbImg.alt = img ? img.getAttribute('alt') : '';
+    lbCap.textContent = cap ? cap.textContent.trim().replace(/\s+/g, ' ') : '';
+    lbGallery.href = link.getAttribute('href');
+  }
+  function openLb(link) {
+    lbList = visibleItems();
+    var at = lbList.indexOf(link);
+    if (at === -1) {
+      lbList = Array.prototype.slice.call(items);
+      at = lbList.indexOf(link);
+    }
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+    showLb(at);
+  }
+  function closeLb() {
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+  }
+  if (lightbox) {
+    items.forEach(function (item) {
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        openLb(item);
+      });
+    });
+    lbClose.addEventListener('click', closeLb);
+    lbPrev.addEventListener('click', function () { showLb(lbIndex - 1); });
+    lbNext.addEventListener('click', function () { showLb(lbIndex + 1); });
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLb();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (lightbox.hidden) return;
+      if (e.key === 'Escape') closeLb();
+      if (e.key === 'ArrowLeft') showLb(lbIndex - 1);
+      if (e.key === 'ArrowRight') showLb(lbIndex + 1);
     });
   }
 })();

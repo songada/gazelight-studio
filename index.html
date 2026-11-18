@@ -81,7 +81,6 @@
         <img class="hero-img hero-img-b" src="https://photos.smugmug.com/photos/i-j267S93/0/MHhM9DBZdczv3TSmdqGgjN6XVXXNQpLn5mjNN2mth/M/i-j267S93-M.jpg" alt="Family of four with their dog, studio portrait on a dark grey backdrop" loading="eager">
         <!-- Family + golden retriever, beige backdrop — Demo gallery (landscape, 5:4) -->
         <img class="hero-img hero-img-c" src="https://photos.smugmug.com/photos/i-RvPWB62/0/K7L4rT8Dh7KFdPxLJMKSnfw7p992XJB4wJd27fQV3/M/i-RvPWB62-M.jpg" alt="Family of four kneeling with their golden retriever" loading="eager">
-        <p class="hero-caption">Real sessions, real families — <a href="https://www.gazelight.studio/Category/GazeLightStudio">see all galleries</a></p>
       </div>
     </div>
   </section>
@@ -486,6 +485,17 @@
   </div>
   <p class="footer-base">© 2026 GazeLight Studio · Every session includes a private online gallery, kept for one year. · Powered by SmugMug</p>
 </footer>
+
+  <!-- LIGHTBOX: portfolio photos open here, full frame, no cropping -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+    <button class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous photo">‹</button>
+    <figure class="lb-figure">
+      <img id="lbImg" src="" alt="">
+      <figcaption class="lb-cap"><span id="lbCap"></span><a id="lbGallery" href="" target="_blank" rel="noopener">View full gallery on SmugMug ↗</a></figcaption>
+    </figure>
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Next photo">›</button>
+  </div>
 
 <script src="script.js"></script>
 </body>
